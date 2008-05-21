@@ -20,13 +20,30 @@ https://virtualmin.joyent.us/woodward
 ===============================================================================
 = Configuration                                                               =
 ===============================================================================
-script/generate joyent_config
+script/generate joyent_config PORT [DOMAIN]
+
+
+===============================================================================
+= Deploy                                                                      =
+===============================================================================
+git commit
+git push
+cap deploy:setup
+cap deploy:migrations
+
+
+===============================================================================
+= Change DocumentRoot                                                         =
+===============================================================================
+https://virtualmin.joyent.us/woodward
 
 
 ===============================================================================
 = Solaris Bootup Action                                                       =
 ===============================================================================
 https://virtualmin.joyent.us/woodward
+
+Example: (Change to be all on one line!)
 
 /usr/local/bin/mongrel_rails start \
   -c /users/home/matthew/domains/reading.matthewtodd.org/var/www/current \
