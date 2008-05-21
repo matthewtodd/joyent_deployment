@@ -44,18 +44,26 @@ cap deploy:migrations
 ===============================================================================
 https://virtualmin.joyent.us/woodward
 
+A. Select Domain from Dropdown
+B. Services -> Configure Website
+   1. Document Options: Document Root Directory; Save.
+   2. Directory: Path; Save.
+   3. Apply Changes
+
 
 ===============================================================================
 = Solaris Bootup Action                                                       =
 ===============================================================================
 https://virtualmin.joyent.us/woodward
 
-Example: (Change to be all on one line!)
+A. Select Domain from Dropdown
+B. Services -> Bootup Actions
+   1. Add a new bootup action.
+   2. Action Name:                 APPLICATION
+      Description:                 Starts the APPLICATION rails application.
+      Started:                     Yes
+      Commands to run at startup:  /usr/local/bin/mongrel_rails start -c /users/home/matthew/domains/DOMAIN/var/www/current -p PORT -d -e production -a 127.0.0.1 -P /users/home/matthew/domains/DOMAIN/var/run/dispatch.PORT.pid
+      Commands to run on shutdown: Kill all started processes
+   3. Save.
 
-/usr/local/bin/mongrel_rails start \
-  -c /users/home/matthew/domains/reading.matthewtodd.org/var/www/current \
-  -p PORT \
-  -d \
-  -e production \
-  -a 127.0.0.1 \
-  -P /users/home/matthew/domains/reading.matthewtodd.org/var/run/dispatch.PORT.pid
+
