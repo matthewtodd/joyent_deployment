@@ -1,5 +1,41 @@
-Sample config/deploy.rb:
-
+===============================================================================
+= config/deploy.rb                                                            =
+===============================================================================
 set :application, 'reading'
 set :database,    'matthew_reading_production'
 set :domain,      'reading.matthewtodd.org'
+
+
+===============================================================================
+= .htaccess                                                                   =
+===============================================================================
+DirectorySlash off
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.+) - [PT,L]
+
+RewriteCond %{REQUEST_FILENAME} ^([^.]+)$
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^.]+)$ $1.html [PT,L]
+
+RewriteRule ^(.*)$ http://127.0.0.1:4005/$1 [P,QSA,L]
+
+
+===============================================================================
+= Solaris Bootup Action                                                       =
+===============================================================================
+/usr/local/bin/mongrel_rails start \
+  -c /users/home/matthew/domains/reading.matthewtodd.org/var/www/current \
+  -p 4005 \
+  -d \
+  -e production \
+  -a 127.0.0.1 \
+  -P /users/home/matthew/domains/reading.matthewtodd.org/var/run/dispatch.4005.pid
+  
+
+===============================================================================
+= logrotate!!!                                                                =
+===============================================================================
+

@@ -2,7 +2,8 @@ _cset(:domain) { abort "Please specify the domain you're deploying to, set :doma
 
 server 'woodward.joyent.us', :web, :app, :user => 'matthew'
 
-set(:deploy_to) { "/users/home/matthew/domains/#{domain}/var/www" }
+set(:domain_path) { "/users/home/matthew/domains/#{domain}" }
+set(:deploy_to)   { "#{domain_path}/var/www" }
 
 set(:scm, :git)
 set(:repository) { "/users/home/matthew/domains/git.matthewtodd.org/var/lib/repos/#{application}.git" }
