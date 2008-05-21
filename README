@@ -1,0 +1,5 @@
+Sample config/deploy.rb:
+
+set :application, 'reading'
+set :database,    'matthew_reading_production'
+set :domain,      'reading.matthewtodd.org'
