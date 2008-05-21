@@ -1,35 +1,37 @@
 ===============================================================================
-= config/deploy.rb                                                            =
+= Create Virtual Server                                                       =
 ===============================================================================
-set :application, 'reading'
-set :database,    'matthew_reading_production'
-set :domain,      'reading.matthewtodd.org'
+https://virtualmin.joyent.us/woodward
 
 
 ===============================================================================
-= .htaccess                                                                   =
+= Request a Port Number                                                       =
 ===============================================================================
-DirectorySlash off
+http://help.joyent.com/index.php?pg=request
 
-RewriteEngine on
 
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule ^(.+) - [PT,L]
+===============================================================================
+= Create Database                                                             =
+===============================================================================
+I think it'll play nicer with Virtualmin to do this through the web.
+https://virtualmin.joyent.us/woodward
 
-RewriteCond %{REQUEST_FILENAME} ^([^.]+)$
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^([^.]+)$ $1.html [PT,L]
 
-RewriteRule ^(.*)$ http://127.0.0.1:4005/$1 [P,QSA,L]
+===============================================================================
+= Configuration                                                               =
+===============================================================================
+script/generate joyent_config
 
 
 ===============================================================================
 = Solaris Bootup Action                                                       =
 ===============================================================================
+https://virtualmin.joyent.us/woodward
+
 /usr/local/bin/mongrel_rails start \
   -c /users/home/matthew/domains/reading.matthewtodd.org/var/www/current \
-  -p 4005 \
+  -p PORT \
   -d \
   -e production \
   -a 127.0.0.1 \
-  -P /users/home/matthew/domains/reading.matthewtodd.org/var/run/dispatch.4005.pid
+  -P /users/home/matthew/domains/reading.matthewtodd.org/var/run/dispatch.PORT.pid

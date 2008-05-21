@@ -1,0 +1,12 @@
+DirectorySlash off
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.+) - [PT,L]
+
+RewriteCond %{REQUEST_FILENAME} ^([^.]+)$
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^.]+)$ $1.html [PT,L]
+
+RewriteRule ^(.*)$ http://127.0.0.1:<%= port %>/$1 [P,QSA,L]
