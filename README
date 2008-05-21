@@ -1,4 +1,11 @@
 ===============================================================================
+= Install this plugin                                                         =
+===============================================================================
+git submodule add ssh://woodward/users/home/matthew/domains/git.matthewtodd.org/var/lib/repos/joyent_deployment.git vendor/plugins/joyent_deployment
+git submodule init
+
+
+===============================================================================
 = Create Virtual Server                                                       =
 ===============================================================================
 https://virtualmin.joyent.us/woodward

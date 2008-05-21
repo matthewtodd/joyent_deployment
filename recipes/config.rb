@@ -1,6 +1,6 @@
 _cset(:domain) { abort "Please specify the domain you're deploying to, set :domain, 'foo'" }
 
-server 'woodward.joyent.us', :web, :app, :user => 'matthew'
+server 'woodward.joyent.us', :web, :app, :db, :primary => true, :user => 'matthew'
 
 set(:domain_path) { "/users/home/matthew/domains/#{domain}" }
 set(:deploy_to)   { "#{domain_path}/var/www" }
