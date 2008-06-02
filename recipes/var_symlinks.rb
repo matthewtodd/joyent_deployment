@@ -8,7 +8,7 @@ namespace :deploy do
         ln -s #{domain_path}/var/run #{shared_path}/pids
       CMD
     end
-    
+
     task :prepare do
       run <<-CMD
         rm -rf #{domain_path}/var/log &&

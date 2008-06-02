@@ -8,6 +8,7 @@ set(:deploy_to)   { "#{domain_path}/var/www" }
 set(:scm, :git)
 set(:repository) { "/users/home/matthew/domains/git.matthewtodd.org/var/lib/repos/#{application}.git" }
 set(:git_shallow_clone, 1)
+set(:git_enable_submodules, true)
 
 set(:group_writable, false)
 set(:use_sudo, false)
