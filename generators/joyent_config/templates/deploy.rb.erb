@@ -1,5 +1,3 @@
-server 'woodward.joyent.us', :web, :app, :db, :primary => true, :user => 'matthew'
-
 set :application, '<%= application %>'
 set :user,        'matthew'
 set :database,    "#{user}_#{application}_production"
@@ -13,3 +11,5 @@ set :git_enable_submodules, true
 
 set :group_writable, false
 set :use_sudo, false
+
+server 'woodward.joyent.us', :web, :app, :db, :primary => true, :user => user
