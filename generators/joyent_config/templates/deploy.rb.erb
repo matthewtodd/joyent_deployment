@@ -1,3 +1,15 @@
+server 'woodward.joyent.us', :web, :app, :db, :primary => true, :user => 'matthew'
+
 set :application, '<%= application %>'
-set :database,    'matthew_<%= application %>_production'
-set :domain,      '<%= domain %>'
+set :user,        'matthew'
+set :database,    "#{user}_#{application}_production"
+set :domain_path, "/users/home/#{user}/domains/<%= domain %>"
+set :deploy_to,   "#{domain_path}/var/www"
+
+set :scm, :git
+set :repository,  "/users/home/matthew/domains/git.matthewtodd.org/var/lib/repos/#{application}.git"
+set :git_shallow_clone, 1
+set :git_enable_submodules, true
+
+set :group_writable, false
+set :use_sudo, false

@@ -7,8 +7,7 @@ namespace :deploy do
   # immediately.
   desc 'Start the application servers.'
   task :start do
-    puts 'To start the application, please use the Bootup Actions at'
-    puts 'https://virtualmin.joyent.us/woodward/virtualmin-init/index.cgi?dom=120704699725046'
+    puts 'To start the application, please use a Bootup Actions.'
   end
 
   desc 'Restarts your application.'

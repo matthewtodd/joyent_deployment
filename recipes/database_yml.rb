@@ -1,5 +1,3 @@
-_cset(:database) { abort "Please specify the database name, set :database, 'foo'" }
-
 namespace :deploy do
   namespace :database_yml do
     desc 'Symlink the shared database.yml into the latest_release'
@@ -13,8 +11,8 @@ namespace :deploy do
         production:
           adapter:  mysql
           database: #{database}
-          username: matthew
-          password: #{Capistrano::CLI.password_prompt("Enter the password for matthew on #{database}: ")}
+          username: #{user}
+          password: #{Capistrano::CLI.password_prompt("Enter the password for #{user} on #{database}: ")}
           socket:   /tmp/mysql.sock
       END
     end
