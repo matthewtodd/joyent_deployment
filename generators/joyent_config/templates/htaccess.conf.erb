@@ -1,12 +1,21 @@
+# This keeps us from looking for files named events/.html.
 DirectorySlash off
 
 RewriteEngine on
 
+# Maintenance page
+RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
+RewriteCond %{SCRIPT_FILENAME} !maintenance.html
+RewriteRule ^.*$ /system/maintenance.html [L]
+
+# Server the file if it exists
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule ^(.+) - [PT,L]
 
+# Serve the .html flavor of the requested dotless path, if it exists. (Caching.)
 RewriteCond %{REQUEST_FILENAME} ^([^.]+)$
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^([^.]+)$ $1.html [PT,L]
 
+# Finally, proxy over to Mongrel.
 RewriteRule ^(.*)$ http://127.0.0.1:<%= port %>/$1 [P,QSA,L]
