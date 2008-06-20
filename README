@@ -1,7 +1,7 @@
 ===============================================================================
 = Install this plugin                                                         =
 ===============================================================================
-git submodule add ssh://woodward/users/home/matthew/domains/git.matthewtodd.org/var/lib/repos/joyent_deployment.git vendor/plugins/joyent_deployment
+git submodule add git://github.com/matthewtodd/joyent_deployment.git vendor/plugins/joyent_deployment
 git submodule init
 
 
