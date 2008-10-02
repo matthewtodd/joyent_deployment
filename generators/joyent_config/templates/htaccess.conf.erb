@@ -5,17 +5,25 @@ RewriteEngine on
 
 # Maintenance page
 RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
-RewriteCond %{SCRIPT_FILENAME} !maintenance.html
+RewriteCond %{REQUEST_FILENAME} !maintenance.html
 RewriteRule ^.*$ /system/maintenance.html [L]
 
-# Server the file if it exists
+# Serve the file if it exists. (Caching.)
+RewriteCond %{REQUEST_METHOD} GET
 RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule ^(.+) - [PT,L]
+RewriteRule ^.*$ - [PT,L]
 
 # Serve the .html flavor of the requested dotless path, if it exists. (Caching.)
+RewriteCond %{REQUEST_METHOD} GET
 RewriteCond %{REQUEST_FILENAME} ^([^.]+)$
 RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^([^.]+)$ $1.html [PT,L]
+RewriteRule ^(.*)$ $1.html [PT,L]
+
+# Serve the index.html file for top-level requests, if it exists. (Caching.)
+RewriteCond %{REQUEST_METHOD} GET
+RewriteCond %{REQUEST_URI} ^/$
+RewriteCond %{DOCUMENT_ROOT}/index.html -f
+RewriteRule ^.*$ /index.html [PT,L]
 
 # Finally, proxy over to Mongrel.
 RewriteRule ^(.*)$ http://127.0.0.1:<%= port %>/$1 [P,QSA,L]
