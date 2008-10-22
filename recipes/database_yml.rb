@@ -8,7 +8,7 @@ namespace :deploy do
     desc 'Write a production database.yml file into shared_path'
     task :default do
       put <<-END.gsub(/^ {8}/, ''), "#{shared_path}/database.yml", :mode => 0600
-        production:
+        #{fetch(:rails_env, 'production')}:
           adapter:  mysql
           database: #{database}
           username: #{user}
