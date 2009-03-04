@@ -3,6 +3,10 @@ DirectorySlash off
 
 RewriteEngine on
 
+# http://no-www.org/
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ http://<%= domain %>/$1 [R=301,L]
+
 # Maintenance page
 RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
 RewriteCond %{REQUEST_FILENAME} !maintenance.html
